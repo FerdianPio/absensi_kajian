@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 12, 2021 at 11:55 PM
+-- Generation Time: Jun 10, 2021 at 04:45 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.2
 
@@ -85,27 +85,12 @@ INSERT INTO `cabang` (`id_cabang`, `id_perwakilan`, `nama_cabang`, `ketua_cabang
 
 CREATE TABLE `gelombang` (
   `id_gelombang` int(2) NOT NULL,
-  `id_kegiatan` int(11) NOT NULL,
-  `ketua` varchar(50) NOT NULL,
-  `sekertaris` varchar(50) NOT NULL,
-  `bendahara` varchar(50) NOT NULL,
   `tanggal_kegiatan` date NOT NULL,
   `waktu_mulai` time NOT NULL,
   `waktu_selesai` time NOT NULL,
-  `gender` enum('Pa/Pi','Pa','Pi') NOT NULL,
+  `gender` tinyint(1) NOT NULL,
   `link` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `gelombang`
---
-
-INSERT INTO `gelombang` (`id_gelombang`, `id_kegiatan`, `ketua`, `sekertaris`, `bendahara`, `tanggal_kegiatan`, `waktu_mulai`, `waktu_selesai`, `gender`, `link`) VALUES
-(1, 1, 'Tara', 'Tessa', 'Tina', '2021-06-12', '20:00:00', '24:00:00', 'Pa/Pi', 'lkajshdlkajs.me.ly'),
-(2, 1, 'Tricia', 'Ulyana', 'Ulyssa', '2021-06-13', '01:00:00', '06:00:00', 'Pa/Pi', 'klajhlkjhlkajsdfn.me.ly'),
-(3, 1, 'Nessa', 'Carmilla', 'Fedora', '2021-06-30', '06:14:00', '10:15:00', 'Pa/Pi', 'pgasdadhk.me.ly'),
-(4, 2, 'Abe', 'Helena', 'Felica', '2021-06-29', '09:23:00', '13:18:00', 'Pa', 'bit.ly/jkaksjq'),
-(5, 2, 'Gloria', 'Helena', 'Felica', '2021-07-10', '08:19:00', '14:19:00', 'Pi', 'bit.lykalsjd');
 
 -- --------------------------------------------------------
 
@@ -115,17 +100,9 @@ INSERT INTO `gelombang` (`id_gelombang`, `id_kegiatan`, `ketua`, `sekertaris`, `
 
 CREATE TABLE `kegiatan` (
   `id_kegiatan` int(11) NOT NULL,
-  `judul_kegiatan` varchar(50) NOT NULL
+  `judul_kegiatan` varchar(50) NOT NULL,
+  `gelombang` int(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `kegiatan`
---
-
-INSERT INTO `kegiatan` (`id_kegiatan`, `judul_kegiatan`) VALUES
-(1, 'Perkulian Tengah Malam 2021'),
-(2, 'DropAfter No Drop Now'),
-(4, 'Pengabdian Deadliner 2021');
 
 -- --------------------------------------------------------
 
@@ -138,18 +115,11 @@ CREATE TABLE `kelompok` (
   `id_cabang` int(11) NOT NULL,
   `nama_kelompok` varchar(50) NOT NULL,
   `ketua_kelompok` varchar(50) NOT NULL,
-  `sekertaris_kelompok` varchar(50) NOT NULL,
+  `sekertaris_kelopmpok` varchar(50) NOT NULL,
   `bendahara_kelompok` varchar(50) NOT NULL,
   `alamat_kelompok` varchar(255) NOT NULL,
   `cp_kelompok` varchar(13) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `kelompok`
---
-
-INSERT INTO `kelompok` (`id_kelompok`, `id_cabang`, `nama_kelompok`, `ketua_kelompok`, `sekertaris_kelompok`, `bendahara_kelompok`, `alamat_kelompok`, `cp_kelompok`) VALUES
-(1, 1, 'Alpha', 'Sarah', 'Serena ', 'Sonya', 'Everland', '101010101001');
 
 -- --------------------------------------------------------
 
@@ -235,14 +205,14 @@ ALTER TABLE `cabang`
 -- Indexes for table `gelombang`
 --
 ALTER TABLE `gelombang`
-  ADD PRIMARY KEY (`id_gelombang`),
-  ADD KEY `id_kegiatan` (`id_kegiatan`);
+  ADD PRIMARY KEY (`id_gelombang`);
 
 --
 -- Indexes for table `kegiatan`
 --
 ALTER TABLE `kegiatan`
-  ADD PRIMARY KEY (`id_kegiatan`);
+  ADD PRIMARY KEY (`id_kegiatan`),
+  ADD KEY `gelombang` (`gelombang`);
 
 --
 -- Indexes for table `kelompok`
@@ -297,19 +267,19 @@ ALTER TABLE `cabang`
 -- AUTO_INCREMENT for table `gelombang`
 --
 ALTER TABLE `gelombang`
-  MODIFY `id_gelombang` int(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_gelombang` int(2) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `kegiatan`
 --
 ALTER TABLE `kegiatan`
-  MODIFY `id_kegiatan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_kegiatan` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `kelompok`
 --
 ALTER TABLE `kelompok`
-  MODIFY `id_kelompok` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_kelompok` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `perwakilan`
@@ -340,10 +310,10 @@ ALTER TABLE `cabang`
   ADD CONSTRAINT `cabang_ibfk_1` FOREIGN KEY (`id_perwakilan`) REFERENCES `perwakilan` (`id_perwakilan`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `gelombang`
+-- Constraints for table `kegiatan`
 --
-ALTER TABLE `gelombang`
-  ADD CONSTRAINT `gelombang_ibfk_1` FOREIGN KEY (`id_kegiatan`) REFERENCES `kegiatan` (`id_kegiatan`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `kegiatan`
+  ADD CONSTRAINT `kegiatan_ibfk_1` FOREIGN KEY (`gelombang`) REFERENCES `gelombang` (`id_gelombang`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `kelompok`
