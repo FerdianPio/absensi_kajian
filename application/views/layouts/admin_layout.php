@@ -75,7 +75,7 @@
                         <a class="collapse-item" href="<?php echo base_url('admin/Cabang')?>">Cabang</a>
                         <a class="collapse-item" href="<?php echo base_url('admin/Kelompok')?>">Kelompok</a>
                         <h6 class="collapse-header">create</h6>
-                        <a class="collapse-item" href="<?php echo base_url('admin/Dashboard/create')?>">Add admin</a>
+                        <a class="collapse-item" href="#">Add admin</a>
                     </div>
                 </div>
             </li>
@@ -98,7 +98,7 @@
 
             <!-- Nav Item - Kegiatan -->
             <li class="nav-item">
-                <a class="nav-link" href="charts.html">
+                <a class="nav-link" href="<?= base_url('admin/Kegiatan')?>">
                     <i class="fas fa-fw fa-chart-area"></i>
                     <span>Kegiatan</span></a>
             </li>
