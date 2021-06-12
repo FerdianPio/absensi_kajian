@@ -10,6 +10,12 @@
 
 		<form action="<?php echo base_url('admin/Kegiatan/update_gelombang')?>? id_gelombang='<?=$_GET['id_gelombang']?>'" method="post">
 				<div class="form-group">
+					<label for="id_kegiatan">ID Kegiatan</label>
+					<?php foreach($id_kegiatan->result_array() as $key=>$value):?>
+						<input type="text" name="id_kegiatan" id="id_kegiatan" class="form-control" value="<?=$value['id_kegiatan']?>" readonly='readonly'>
+					<?php endforeach;?>
+				</div>
+				<div class="form-group">
 					<label for="ketua">Ketua Gelombang</label>
 					<input type="text" name="ketua" id="ketua" class="form-control">
 				</div>

@@ -14,13 +14,16 @@ class Mkegiatan extends CI_Model {
 						->from('gelombang')
 						->join('kegiatan','gelombang.id_kegiatan=kegiatan.id_kegiatan')
 						->get();
-		return $query;
-	}
-
-	public function select_one($data)
+						return $query;
+					}
+					
+					
+	public function get_one($data)
 	{
 		$query=$this->db->select('*')
-						->where("id_kegiatan",$data)
+						->from('gelombang')
+						->join('kegiatan','gelombang.id_kegiatan=kegiatan.id_kegiatan')
+						->where("id_gelombang",$data)
 						->get();
 		return $query;
 	}

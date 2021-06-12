@@ -101,12 +101,15 @@ class Kegiatan extends CI_Controller{
 		if ($this->form_validation->run() == FALSE) 
 		{			
 			$data['id_gelombang']=$_GET['id_gelombang'];
+			$tmp=$this->Mkegiatan->get_one($data['id_gelombang']);
+			$data['id_kegiatan']=$tmp;
 			$data['gender']=$this->Mkegiatan->get_gender();	
 			$this->template->load('admin_layout', 'contents' , 'admin/Kegiatan/edit_gelombang',$data);
 		} 
 		else 
 		{
 			$data['id_gelombang']=$_GET['id_gelombang'];
+			$data['id_kegiatan']=$_POST['id_kegiatan'];
 			$data['ketua']=$_POST['ketua'];
 			$data['sekertaris']=$_POST['sekertaris'];
 			$data['bendahara']=$_POST['bendahara'];
