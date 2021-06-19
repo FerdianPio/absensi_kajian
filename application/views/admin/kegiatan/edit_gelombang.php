@@ -7,8 +7,11 @@
 	</div>
 
 	<!-- Content Row -->
-
-		<form action="<?php echo base_url('admin/Kegiatan/update_gelombang')?>? id_gelombang='<?=$_GET['id_gelombang']?>'" method="post">
+		<form action="<?php echo base_url('admin/Kegiatan/update_gelombang')?>" method="POST">
+				<div class="form-group">
+					<label for="id_gelombang">ID Gelombang</label>
+					<input type="text" name="id_gelombang" value="<?=$id_gelombang?>" class="form-control" readonly='readonly'>
+				</div>
 				<div class="form-group">
 					<label for="id_kegiatan">ID Kegiatan</label>
 					<?php foreach($id_kegiatan->result_array() as $key=>$value):?>

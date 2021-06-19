@@ -81,8 +81,9 @@ class Mkegiatan extends CI_Model {
 			'gender'=>$data['gender'],
 			'link'=>$data['link'],
 		);
-		$this->db->where('id_gelombang',$data['id_gelombang']);
+		$this->db->where('id_gelombang',intval($data['id_gelombang']));  
 		$this->db->update('gelombang', $up);
+		print_r($this->db->last_query());
 	}
 	
 	public function delete_kegiatan($data)

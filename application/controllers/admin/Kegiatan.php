@@ -108,7 +108,7 @@ class Kegiatan extends CI_Controller{
 		} 
 		else 
 		{
-			$data['id_gelombang']=$_GET['id_gelombang'];
+			$data['id_gelombang']=$_POST['id_gelombang'];
 			$data['id_kegiatan']=$_POST['id_kegiatan'];
 			$data['ketua']=$_POST['ketua'];
 			$data['sekertaris']=$_POST['sekertaris'];
