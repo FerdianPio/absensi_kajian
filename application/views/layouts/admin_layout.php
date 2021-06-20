@@ -75,7 +75,7 @@
                         <?php if($this->session->userdata('level')<=1) {echo "<a class='collapse-item' href='".base_url('admin/Cabang')."'>Cabang </a>";}?>
                         <?php if($this->session->userdata('level')<=2) {echo "<a class='collapse-item' href='".base_url('admin/Kelompok')."'>Kelompok </a>";}?>
                         <h6 class="collapse-header">create</h6>
-                        <a class="collapse-item" href="#">Add Account</a>
+                        <?php if($this->session->userdata('level')<=2) {echo "<a class='collapse-item' href='".base_url('admin/Akun')."'>Account </a>";}?>
                     </div>
                 </div>
             </li>
