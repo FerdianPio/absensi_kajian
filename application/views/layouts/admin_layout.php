@@ -99,14 +99,14 @@
             <!-- Nav Item - Kegiatan -->
             <li class="nav-item">
                 <a class="nav-link" href="<?= base_url('admin/Kegiatan')?>">
-                    <i class="fas fa-fw fa-chart-area"></i>
+                    <i class="fas fa-fw fa-calendar"></i>
                     <span>Kegiatan</span></a>
             </li>
             
 			<!-- Nav Item - Charts -->
             <li class="nav-item">
                 <a class="nav-link" href="charts.html">
-                    <i class="fas fa-fw fa-chart-area"></i>
+                    <i class="fas fa-fw fa-list"></i>
                     <span>Absensi</span></a>
             </li>
 

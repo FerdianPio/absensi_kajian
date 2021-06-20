@@ -12,6 +12,7 @@ class Dashboard extends CI_Controller {
 			$data['perwakilan']=$this->Madmin->get_perwakilan();
 			$data['cabang']=$this->Madmin->get_cabang();
 			$data['kelompok']=$this->Madmin->get_kelompok();
+			$data['gelombang']=$this->Madmin->get_gelombang();
             // $this->load->view('admin/dashboard',$data);
 			$this->template->set('custom_css', '');
 			$this->template->set('custom_js', '');

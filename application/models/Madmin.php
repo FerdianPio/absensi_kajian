@@ -17,6 +17,13 @@ class Madmin extends CI_Model{
     {
         $query=$this->db->get('kelompok'); 
         return $query;
+    
+	}
+
+	public function get_gelombang()
+    {
+        $query=$this->db->get('gelombang'); 
+        return $query;
     }
 
 
