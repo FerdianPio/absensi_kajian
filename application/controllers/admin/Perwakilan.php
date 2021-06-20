@@ -6,6 +6,7 @@ class Perwakilan extends CI_Controller{
 	{
 		parent::__construct();
 		$this->simple_login->cek_login();
+		$this->simple_login->cek_level(0);
 	}
 
 	public function index()

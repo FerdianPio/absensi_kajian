@@ -70,12 +70,12 @@
                 <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">admin level:</h6>
-                        <a class="collapse-item" href="<?php echo base_url('admin/Perwakilan')?>">Perwakilan</a>
-                        <a class="collapse-item" href="<?php echo base_url('admin/Cabang')?>">Cabang</a>
-                        <a class="collapse-item" href="<?php echo base_url('admin/Kelompok')?>">Kelompok</a>
+                        <h6 class="collapse-header">admin level:<?=$this->session->userdata('level');?></h6>
+                        <?php if($this->session->userdata('level')<=0) {echo "<a class='collapse-item' href='".base_url('admin/Perwakilan')."'>Perwakilan </a>";}?>
+                        <?php if($this->session->userdata('level')<=1) {echo "<a class='collapse-item' href='".base_url('admin/Cabang')."'>Cabang </a>";}?>
+                        <?php if($this->session->userdata('level')<=2) {echo "<a class='collapse-item' href='".base_url('admin/Kelompok')."'>Kelompok </a>";}?>
                         <h6 class="collapse-header">create</h6>
-                        <a class="collapse-item" href="#">Add admin</a>
+                        <a class="collapse-item" href="#">Add Account</a>
                     </div>
                 </div>
             </li>
@@ -181,7 +181,7 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?=$this->session->userdata('username');?></span>
                                 <img class="img-profile rounded-circle"
                                     src="<?php echo base_url('assets/img/undraw_profile.svg')?>">
                             </a>

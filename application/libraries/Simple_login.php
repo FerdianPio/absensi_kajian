@@ -31,18 +31,20 @@ class Simple_login {
   public function login($username, $password) {
 
       //cek username dan password
-      $query = $this->CI->db->get_where('admin',array('username'=>$username,'password' => $password));
+      $query = $this->CI->db->get_where('akun',array('username'=>$username,'password' => $password));
 
       if($query->num_rows() == 1) {
           //ambil data user berdasar username
-          $row  = $this->CI->db->query('SELECT id FROM admin where username = "'.$username.'"');
+          $row  = $this->CI->db->query('SELECT * FROM akun where username = "'.$username.'"');
           $admin     = $row->row();
-          $id   = $admin->id;
+          $id   = $admin->id_akun;
+          $level   = $admin->level_akses;
 
           //set session user
           $this->CI->session->set_userdata('username', $username);
           $this->CI->session->set_userdata('id_login', uniqid(rand()));
           $this->CI->session->set_userdata('id', $id);
+          $this->CI->session->set_userdata('level', $level);
 
           //redirect ke halaman dashboard
           redirect(site_url('admin/Dashboard'));
@@ -72,6 +74,13 @@ class Simple_login {
           //alihkan ke halaman login
           redirect(site_url('login'));
       }
+  }
+
+  public function cek_level($level) {
+	  if($this->CI->session->userdata('level')>$level) {
+		// $this->CI->session->set_flashdata('level','Level admin tidak diberikan akses');
+		redirect(base_url());
+	  }
   }
 
   /**
