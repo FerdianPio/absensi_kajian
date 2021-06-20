@@ -41,8 +41,8 @@
 							<td><?=$header['bendahara_kelompok']?></td>
 							<td><?=$header['alamat_kelompok']?></td>
 							<td><?=$header['cp_kelompok']?></td>
-							<td><a href="<?=base_url('admin/Kelompok/update')?>? id_kelompok=<?=$header['id_kelompok']?>" class='fa fa-pen text-warning'></a>
-							<td><a href="<?=site_url('admin/Kelompok/delete')?>? id_kelompok=<?=$header['id_kelompok']?>" class='fa fa-trash text-danger'></a>
+							<td><a href="<?=base_url('admin/Kelompok/update')?>? id_kelompok=<?=$header['id_kelompok']?>" class='badge badge-pill badge-warning'><i class="fa fa-pen">Edit</i></a>
+							<td><a href="<?=site_url('admin/Kelompok/delete')?>? id_kelompok=<?=$header['id_kelompok']?>" class='badge badge-pill badge-danger'><i class="fa fa-trash">Delete</i></a>
 							</tr>
 						<?php endforeach;?>
 					</tbody>

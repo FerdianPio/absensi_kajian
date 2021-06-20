@@ -39,8 +39,8 @@
 							<td><?=$header['bendahara_perwakilan']?></td>
 							<td><?=$header['alamat_perwakilan']?></td>
 							<td><?=$header['cp_perwakilan']?></td>
-							<td><a href="<?=base_url('admin/Perwakilan/update')?>? id_perwakilan=<?=$header['id_perwakilan']?>" class='fa fa-pen text-warning'></a>
-							<td><a href="<?=site_url('admin/Perwakilan/delete')?>? id_perwakilan=<?=$header['id_perwakilan']?>" class='fa fa-trash text-danger'></a>
+							<td><a href="<?=base_url('admin/Perwakilan/update')?>? id_perwakilan=<?=$header['id_perwakilan']?>" class='badge badge-pill badge-warning'><i class="fa fa-pen">Edit</i></a>
+							<td><a href="<?=site_url('admin/Perwakilan/delete')?>? id_perwakilan=<?=$header['id_perwakilan']?>" class='badge badge-pill badge-danger'><i class="fa fa-trash">Delete</i></a>
 							</tr>
 						<?php endforeach;?>
 					</tbody>

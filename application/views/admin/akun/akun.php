@@ -33,8 +33,8 @@
 							<td><?=$header['tingkatan']?></td>
 							<td><?=$header['username']?></td>
 							<td><?=$header['password']?></td>
-							<td><a href="<?=base_url('admin/Akun/update')?>? id_akun=<?=$header['id_akun']?>" class='fa fa-pen text-warning'></a>
-							<td><a href="<?=site_url('admin/Akun/delete')?>? id_akun=<?=$header['id_akun']?>" class='fa fa-trash text-danger'></a>
+							<td><a href="<?=base_url('admin/Akun/update')?>? id_akun=<?=$header['id_akun']?>" class='badge badge-pill badge-warning'><i class="fa fa-pen">Edit</i></a>
+							<td><a href="<?=site_url('admin/Akun/delete')?>? id_akun=<?=$header['id_akun']?>" class='badge badge-pill badge-danger'><i class="fa fa-trash">Delete</i></a>
 							</tr>
 						<?php endforeach;?>
 					</tbody>

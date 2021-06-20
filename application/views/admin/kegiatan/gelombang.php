@@ -55,8 +55,8 @@
 							<td><?=$header['waktu_selesai']?></td>
 							<td><?=$header['gender']?></td>
 							<td><?=$header['link']?></td>
-							<td><a href="<?=base_url('admin/Kegiatan/update_gelombang')?>? id_gelombang=<?=$header['id_gelombang']?>" class='fa fa-pen text-warning'></a>
-							<td><a href="<?=base_url('admin/Kegiatan/delete_gelombang')?>? id_gelombang=<?=$header['id_gelombang']?>" class='fa fa-trash text-danger'></a>
+							<td><a href="<?=base_url('admin/Kegiatan/update_gelombang')?>? id_gelombang=<?=$header['id_gelombang']?>" class='badge badge-pill badge-warning'><i class="fa fa-pen">Edit</i></a>
+							<td><a href="<?=base_url('admin/Kegiatan/delete_gelombang')?>? id_gelombang=<?=$header['id_gelombang']?>" class='badge badge-pill badge-danger'><i class="fa fa-trash">Delete</i></a>
 							</tr>
 
 						<?php endforeach;?>

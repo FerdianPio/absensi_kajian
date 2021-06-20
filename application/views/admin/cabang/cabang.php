@@ -41,8 +41,8 @@
 							<td><?=$header['bendahara_cabang']?></td>
 							<td><?=$header['alamat_cabang']?></td>
 							<td><?=$header['cp_cabang']?></td>
-							<td><a href="<?=base_url('admin/Cabang/update')?>? id_cabang=<?=$header['id_cabang']?>" class='fa fa-pen text-warning'></a>
-							<td><a href="<?=site_url('admin/Cabang/delete')?>? id_cabang=<?=$header['id_cabang']?>" class='fa fa-trash text-danger'></a>
+							<td><a href="<?=base_url('admin/Cabang/update')?>? id_cabang=<?=$header['id_cabang']?>" class='badge badge-pill badge-warning'><i class="fa fa-pen">Edit</i></a>
+							<td><a href="<?=site_url('admin/Cabang/delete')?>? id_cabang=<?=$header['id_cabang']?>" class='badge badge-pill badge-danger'><i class="fa fa-trash">Delete</i></a>
 							</tr>
 						<?php endforeach;?>
 					</tbody>

@@ -39,8 +39,8 @@
 							<td><?=$header['id_kegiatan']?></td>
 							<td><?=$header['judul_kegiatan']?></td>
 							<td></td>
-							<td><a href="<?=base_url('admin/Kegiatan/update_kegiatan')?>? id_kegiatan=<?=$header['id_kegiatan']?>" class='fa fa-pen text-warning'></a>
-							<td><a href="<?=base_url('admin/Kegiatan/delete_kegiatan')?>? id_kegiatan=<?=$header['id_kegiatan']?>" class='fa fa-trash text-danger'></a>
+							<td><a href="<?=base_url('admin/Kegiatan/update_kegiatan')?>? id_kegiatan=<?=$header['id_kegiatan']?>" class='badge badge-pill badge-warning'><i class="fa fa-pen">Edit</i></a>
+							<td><a href="<?=base_url('admin/Kegiatan/delete_kegiatan')?>? id_kegiatan=<?=$header['id_kegiatan']?>" class='badge badge-pill badge-danger'><i class="fa fa-trash">Delete</i></a>
 							</tr>
 
 						<?php endforeach;?>
