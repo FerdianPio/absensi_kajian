@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 10, 2021 at 04:45 PM
+-- Generation Time: Jun 20, 2021 at 04:41 AM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.2
 
@@ -24,34 +24,25 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `admin`
---
-
-CREATE TABLE `admin` (
-  `id` int(11) NOT NULL,
-  `username` varchar(12) NOT NULL,
-  `password` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `admin`
---
-
-INSERT INTO `admin` (`id`, `username`, `password`) VALUES
-(1, 'FerdianPio', 'eveline7');
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `akun`
 --
 
 CREATE TABLE `akun` (
   `id_akun` int(11) NOT NULL,
-  `tipe_akun` enum('perwakilan','cabang','kelompok') NOT NULL,
+  `level_akses` int(1) NOT NULL,
   `username` varchar(50) NOT NULL,
   `password` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `akun`
+--
+
+INSERT INTO `akun` (`id_akun`, `level_akses`, `username`, `password`) VALUES
+(1, 0, 'admin', 'admin'),
+(2, 1, 'test_perwakillan', 'perwakilan'),
+(3, 2, 'test_cabang', 'cabang'),
+(4, 3, 'test_kelompok', 'kelompok');
 
 -- --------------------------------------------------------
 
@@ -85,12 +76,28 @@ INSERT INTO `cabang` (`id_cabang`, `id_perwakilan`, `nama_cabang`, `ketua_cabang
 
 CREATE TABLE `gelombang` (
   `id_gelombang` int(2) NOT NULL,
+  `id_kegiatan` int(11) NOT NULL,
+  `ketua` varchar(50) NOT NULL,
+  `sekertaris` varchar(50) NOT NULL,
+  `bendahara` varchar(50) NOT NULL,
   `tanggal_kegiatan` date NOT NULL,
   `waktu_mulai` time NOT NULL,
   `waktu_selesai` time NOT NULL,
-  `gender` tinyint(1) NOT NULL,
+  `gender` enum('Pa/Pi','Pa','Pi') NOT NULL,
   `link` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `gelombang`
+--
+
+INSERT INTO `gelombang` (`id_gelombang`, `id_kegiatan`, `ketua`, `sekertaris`, `bendahara`, `tanggal_kegiatan`, `waktu_mulai`, `waktu_selesai`, `gender`, `link`) VALUES
+(1, 1, 'Uma', 'Ulyana', 'Ulyssa', '2021-07-01', '07:02:00', '10:02:00', 'Pi', 'kjiqo.ly'),
+(2, 1, 'Gloria', 'Helena', 'Isadora', '2021-06-20', '05:47:00', '11:47:00', 'Pa/Pi', 'iykwim.ly'),
+(3, 1, 'Abe', 'Bianca', 'Cassandra', '2021-07-01', '07:02:00', '10:02:00', 'Pi', 'bit.ly/jsjkajs'),
+(4, 2, 'Abe', 'Bianca', 'Cassandra', '2021-07-01', '07:02:00', '10:02:00', 'Pi', 'bit.ly/jsjkajs'),
+(5, 2, 'Abe', 'Bianca', 'Cassandra', '2021-07-01', '07:02:00', '10:02:00', 'Pi', 'bit.ly/jsjkajs'),
+(8, 2, 'Abe', 'Bianca', 'Cassandra', '2021-07-01', '07:02:00', '10:02:00', 'Pi', 'bit.ly/jsjkajs');
 
 -- --------------------------------------------------------
 
@@ -100,9 +107,16 @@ CREATE TABLE `gelombang` (
 
 CREATE TABLE `kegiatan` (
   `id_kegiatan` int(11) NOT NULL,
-  `judul_kegiatan` varchar(50) NOT NULL,
-  `gelombang` int(2) NOT NULL
+  `judul_kegiatan` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `kegiatan`
+--
+
+INSERT INTO `kegiatan` (`id_kegiatan`, `judul_kegiatan`) VALUES
+(1, 'Perkulian Tengah Malam 2021'),
+(2, 'DropAfter No Drop Now 1.1');
 
 -- --------------------------------------------------------
 
@@ -115,11 +129,40 @@ CREATE TABLE `kelompok` (
   `id_cabang` int(11) NOT NULL,
   `nama_kelompok` varchar(50) NOT NULL,
   `ketua_kelompok` varchar(50) NOT NULL,
-  `sekertaris_kelopmpok` varchar(50) NOT NULL,
+  `sekertaris_kelompok` varchar(50) NOT NULL,
   `bendahara_kelompok` varchar(50) NOT NULL,
   `alamat_kelompok` varchar(255) NOT NULL,
   `cp_kelompok` varchar(13) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `kelompok`
+--
+
+INSERT INTO `kelompok` (`id_kelompok`, `id_cabang`, `nama_kelompok`, `ketua_kelompok`, `sekertaris_kelompok`, `bendahara_kelompok`, `alamat_kelompok`, `cp_kelompok`) VALUES
+(1, 1, 'Alpha', 'Sarah', 'Serena ', 'Sonya', 'Everland', '101010101001'),
+(4, 1, 'FrozenCrown', 'Ivy', 'Jane', 'Kylee', 'Neverland', '010101000011');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `level_akses`
+--
+
+CREATE TABLE `level_akses` (
+  `level_akses` int(1) NOT NULL,
+  `tingkatan` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `level_akses`
+--
+
+INSERT INTO `level_akses` (`level_akses`, `tingkatan`) VALUES
+(0, 'SUPER ADMIN'),
+(1, 'Perwakilan'),
+(2, 'Cabang'),
+(3, 'Kelompok');
 
 -- --------------------------------------------------------
 
@@ -183,16 +226,11 @@ CREATE TABLE `warga` (
 --
 
 --
--- Indexes for table `admin`
---
-ALTER TABLE `admin`
-  ADD PRIMARY KEY (`id`);
-
---
 -- Indexes for table `akun`
 --
 ALTER TABLE `akun`
-  ADD PRIMARY KEY (`id_akun`);
+  ADD PRIMARY KEY (`id_akun`),
+  ADD KEY `level_akses` (`level_akses`);
 
 --
 -- Indexes for table `cabang`
@@ -205,21 +243,27 @@ ALTER TABLE `cabang`
 -- Indexes for table `gelombang`
 --
 ALTER TABLE `gelombang`
-  ADD PRIMARY KEY (`id_gelombang`);
+  ADD PRIMARY KEY (`id_gelombang`),
+  ADD KEY `id_kegiatan` (`id_kegiatan`);
 
 --
 -- Indexes for table `kegiatan`
 --
 ALTER TABLE `kegiatan`
-  ADD PRIMARY KEY (`id_kegiatan`),
-  ADD KEY `gelombang` (`gelombang`);
+  ADD PRIMARY KEY (`id_kegiatan`);
 
 --
 -- Indexes for table `kelompok`
 --
 ALTER TABLE `kelompok`
   ADD PRIMARY KEY (`id_kelompok`),
-  ADD UNIQUE KEY `id_cabang` (`id_cabang`);
+  ADD KEY `id_cabang` (`id_cabang`) USING BTREE;
+
+--
+-- Indexes for table `level_akses`
+--
+ALTER TABLE `level_akses`
+  ADD PRIMARY KEY (`level_akses`);
 
 --
 -- Indexes for table `perwakilan`
@@ -246,16 +290,10 @@ ALTER TABLE `warga`
 --
 
 --
--- AUTO_INCREMENT for table `admin`
---
-ALTER TABLE `admin`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
 -- AUTO_INCREMENT for table `akun`
 --
 ALTER TABLE `akun`
-  MODIFY `id_akun` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_akun` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `cabang`
@@ -267,19 +305,19 @@ ALTER TABLE `cabang`
 -- AUTO_INCREMENT for table `gelombang`
 --
 ALTER TABLE `gelombang`
-  MODIFY `id_gelombang` int(2) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_gelombang` int(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `kegiatan`
 --
 ALTER TABLE `kegiatan`
-  MODIFY `id_kegiatan` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_kegiatan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `kelompok`
 --
 ALTER TABLE `kelompok`
-  MODIFY `id_kelompok` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_kelompok` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `perwakilan`
@@ -304,16 +342,22 @@ ALTER TABLE `warga`
 --
 
 --
+-- Constraints for table `akun`
+--
+ALTER TABLE `akun`
+  ADD CONSTRAINT `akun_ibfk_1` FOREIGN KEY (`level_akses`) REFERENCES `level_akses` (`level_akses`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
 -- Constraints for table `cabang`
 --
 ALTER TABLE `cabang`
   ADD CONSTRAINT `cabang_ibfk_1` FOREIGN KEY (`id_perwakilan`) REFERENCES `perwakilan` (`id_perwakilan`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `kegiatan`
+-- Constraints for table `gelombang`
 --
-ALTER TABLE `kegiatan`
-  ADD CONSTRAINT `kegiatan_ibfk_1` FOREIGN KEY (`gelombang`) REFERENCES `gelombang` (`id_gelombang`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `gelombang`
+  ADD CONSTRAINT `gelombang_ibfk_1` FOREIGN KEY (`id_kegiatan`) REFERENCES `kegiatan` (`id_kegiatan`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `kelompok`
