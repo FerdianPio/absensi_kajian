@@ -7,7 +7,7 @@ class Mkelompok extends CI_Model {
 		// $query = $this->db->get('kelompok');
 		$query=$this->db->select('*')
 						->from('kelompok')
-						->join('cabang','kelompok.id_pengurus = cabang.id_pengurus')
+						->join('cabang','kelompok.id_cabang = cabang.id_cabang')
 						->get();
 		return $query;
 	}
@@ -37,6 +37,7 @@ class Mkelompok extends CI_Model {
 	public function update_kelompok($data)
 	{
 		$up=array(
+			'id_cabang'=>$data['id_cabang'],
 			'nama_kelompok'=>$data['nama_kelompok'],
 			'ketua_kelompok'=>$data['ketua_kelompok'],
 			'sekertaris_kelompok'=>$data['sekertaris_kelompok'],

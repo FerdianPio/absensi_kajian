@@ -18,7 +18,7 @@ class Kelompok extends CI_Controller{
 	
 	public function create()
 	{
-		$this->form_validation->set_rules('nama_kelompok', 'Nama Kelompok', 'required|min_length[5]|max_length[50]');
+		$this->form_validation->set_rules('nama_kelompok', 'Nama Kelompok', 'required');
 		$this->form_validation->set_rules('ketua_kelompok', 'Ketua Kelompok', 'required');
 		$this->form_validation->set_rules('sekertaris_kelompok', 'Sekertaris Kelompok', 'required');
 		$this->form_validation->set_rules('bendahara_kelompok', 'Bendahara Kelompok', 'required');
